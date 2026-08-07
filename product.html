@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details — StickyPicky</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .pdetail-wrap {
+      max-width: 1100px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 36px;
+      align-items: start;
+    }
+    .pimg-box {
+      border-radius: 24px;
+      border: 4px solid var(--dk);
+      box-shadow: var(--shadow-neo-lg);
+      overflow: hidden;
+      background: #f8f8f8;
+      position: relative;
+    }
+    .pimg-box img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .pinfo-box h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 38px;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .pprice-tag {
+      font-family: 'Bangers', cursive;
+      font-size: 42px;
+      color: var(--pk);
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .pdesc {
+      font-size: 15px;
+      color: #555;
+      font-weight: 600;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .pspecs {
+      background: #f9f9ff;
+      border-radius: 16px;
+      border: 2px solid #eee;
+      padding: 16px;
+      margin-bottom: 24px;
+    }
+    .pspecs h4 {
+      font-weight: 900;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: var(--dk);
+    }
+    .pspecs ul {
+      list-style: none;
+      font-size: 13px;
+      font-weight: 700;
+      color: #666;
+    }
+    .pspecs ul li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pqty-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .pqty-ctrl {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #f0f0f0;
+      padding: 6px 16px;
+      border-radius: 30px;
+      border: 2px solid var(--dk);
+    }
+    .pqty-btn {
+      background: var(--g1);
+      color: #fff;
+      border: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .paction-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn-add-cart {
+      flex: 1;
+      background: var(--g1);
+      color: #fff;
+      border: none;
+      padding: 16px;
+      border-radius: 50px;
+      font-family: 'Bangers', cursive;
+      font-size: 22px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+    .btn-buy-now {
+      flex: 1;
+      background: var(--yw);
+      color: var(--dk);
+      border: 3px solid var(--dk);
+      padding: 16px;
+      border-radius: 50px;
+      font-family: 'Bangers', cursive;
+      font-size: 22px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      box-shadow: 4px 4px 0 var(--dk);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="abar">
+    <div class="atrk">
+      <span class="aitm">🎉 LAUNCH OFFER: 7 A5 Posters <b>@ ₹149</b></span>
+      <span class="aitm">🔥 Anime & Vinyl Stickers <b>@ ₹15</b></span>
+      <span class="aitm">📦 Min order <b>₹199</b></span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">StickyPicky</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="track.html">Track Order</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="openCartDrawer()">🛒 Cart <span class="cnum" id="CNUM">0</span></button>
+    </div>
+  </nav>
+
+  <!-- PRODUCT DETAIL SECTION -->
+  <div class="pdetail-wrap" id="PDETAIL_CONTAINER">
+    <div style="grid-column:1/-1;text-align:center;padding:60px 0;color:#aaa">
+      <div style="font-size:48px">⌛</div>
+      <p style="font-weight:800;font-size:16px;margin-top:12px">Loading product details...</p>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <div class="sh">
+    <div class="stag">YOU MAY ALSO LIKE</div>
+    <h2>RELATED PRODUCTS 🔥</h2>
+  </div>
+  <section class="prods">
+    <div class="pgrid" id="RELATED_GRID"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-container">
+      <div>
+        <div class="flogo">StickyPicky</div>
+        <p class="ftag">Making your world more colourful, one sticker at a time!</p>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Quick Links</h4>
+        <div class="flinks">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop All Products</a>
+          <a href="track.html">Track Order Status</a>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">© 2026 StickyPicky. All rights reserved. <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;margin-left:14px;font-weight:800;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:6px;">🔐 Admin</a></div>
+  </footer>
+
+  <!-- STICKY CART BAR -->
+  <div class="scar" id="SCAR">
+    <div>
+      <div class="scpr" id="SCPR">₹0</div>
+      <div class="scit" id="SCIT">0 items</div>
+    </div>
+    <button class="scbtn" onclick="openCartDrawer()">🛒 View Cart</button>
+  </div>
+
+  <!-- CART DRAWER MODAL -->
+  <div class="cbg" id="CBG" onclick="closeCartDrawer()"></div>
+  <div class="cpanel" id="CPANEL">
+    <div class="cphd">
+      <h3>🛒 YOUR CART</h3>
+      <button class="cpclose" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cpitems" id="CPITEMS"></div>
+    <div class="cpfoot">
+      <div class="cptot">
+        <span>Total</span>
+        <span class="cptotpr" id="CPTOT">₹0</span>
+      </div>
+      <div class="minnote" id="MINNOTE">⚠️ Add ₹<span id="MINL">199</span> more (Min ₹199)</div>
+      <a href="checkout.html" class="cobtn" style="display:block;text-align:center;text-decoration:none">💳 PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    let currentProduct = null;
+    let selectedQty = 1;
+
+    function safeStr(s) {
+      return typeof window.escapeHTML === 'function' ? window.escapeHTML(String(s || '')) : String(s || '');
+    }
+
+    function adjustDetailQty(delta) {
+      selectedQty = Math.max(1, selectedQty + delta);
+      document.getElementById('DETAIL_QTY').textContent = selectedQty;
+    }
+
+    function buyNowProduct() {
+      if (!currentProduct) return;
+      addToCart(currentProduct.id, selectedQty);
+      window.location.href = 'checkout.html';
+    }
+
+    function renderProductDetail() {
+      const params = new URLSearchParams(window.location.search);
+      const pid = params.get('id') || 's1';
+      const allProducts = (window.STORE_PRODUCTS && window.STORE_PRODUCTS.length) ? window.STORE_PRODUCTS : (window.DEFAULT_PRODUCTS || []);
+      currentProduct = allProducts.find(p => p.id === pid) || allProducts[0];
+
+      if (!currentProduct) {
+        document.getElementById('PDETAIL_CONTAINER').innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:60px 0;color:#aaa"><h2>Product Not Found</h2><a href="shop.html" class="by" style="margin-top:12px">Return to Shop</a></div>';
+        return;
+      }
+      document.title = safeStr(currentProduct.nm) + ' — StickyPicky';
+
+      const container = document.getElementById('PDETAIL_CONTAINER');
+      container.innerHTML = `
+        <div class="pimg-box">
+          <img src="${safeStr(currentProduct.img)}" alt="${safeStr(currentProduct.nm)}">
+        </div>
+        <div class="pinfo-box">
+          <h1>${safeStr(currentProduct.nm)}</h1>
+          <div class="pprice-tag">₹${currentProduct.pr}</div>
+          <p class="pdesc">${safeStr(currentProduct.ds)}. Designed with premium high-definition print quality, waterproof laminate layer, and anti-scratch finish for laptop, mobile & wall usage.</p>
+          
+          <div class="pspecs">
+            <h4>PRODUCT HIGHLIGHTS & SPECS:</h4>
+            <ul>
+              <li>✅ Premium Waterproof & Scratchproof Vinyl</li>
+              <li>✅ Precision Die-Cut Edge Finish</li>
+              <li>✅ Sun-proof Vibrant UV Ink Print</li>
+              <li>✅ Removable Adhesive (Leaves Zero Residue)</li>
+            </ul>
+          </div>
+
+          <div class="pqty-row">
+            <span style="font-weight:900;font-size:14px">Quantity:</span>
+            <div class="pqty-ctrl">
+              <button class="pqty-btn" onclick="adjustDetailQty(-1)">−</button>
+              <span id="DETAIL_QTY" style="font-weight:900;font-size:16px">1</span>
+              <button class="pqty-btn" onclick="adjustDetailQty(1)">+</button>
+            </div>
+          </div>
+
+          <div class="paction-btns">
+            <button class="btn-add-cart" onclick="addToCart('${safeStr(currentProduct.id)}', selectedQty)">🛒 ADD TO CART</button>
+            <button class="btn-buy-now" onclick="buyNowProduct()">⚡ BUY NOW</button>
+          </div>
+        </div>
+      `;
+
+      // Render Related Products
+      const relatedGrid = document.getElementById('RELATED_GRID');
+      const related = STORE_PRODUCTS.filter(p => p.cat === currentProduct.cat && p.id !== currentProduct.id).slice(0, 4);
+      relatedGrid.innerHTML = related.map(p => `
+        <div class="pcard">
+          <div class="pthumb" onclick="location.href='product.html?id=${safeStr(p.id)}'">
+            <img src="${safeStr(p.img)}" alt="${safeStr(p.nm)}">
+          </div>
+          <div class="pinfo">
+            <h3 onclick="location.href='product.html?id=${safeStr(p.id)}'">${safeStr(p.nm)}</h3>
+            <p>${safeStr(p.ds)}</p>
+            <div class="prow">
+              <span class="pprice">₹${p.pr}</span>
+              <button class="abtn" onclick="addToCart('${safeStr(p.id)}')">+ Add</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initStoreData();
+      renderProductDetail();
+    });
+  </script>
+</body>
+</html>

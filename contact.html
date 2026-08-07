@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — StickyPicky Support</title>
+  <meta name="description" content="Get in touch with StickyPicky customer support via WhatsApp, Email or Contact Form for order help, bulk orders and inquiries.">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .contact-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 36px;
+    }
+    .contact-box {
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid var(--dk);
+      box-shadow: var(--shadow-neo);
+      padding: 28px 20px;
+    }
+    .contact-box h2 {
+      font-family: 'Bangers', cursive;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .cinfo-card {
+      background: #f8f8ff;
+      border-radius: 14px;
+      padding: 16px;
+      border: 2px solid #eee;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .cinfo-icon {
+      font-size: 28px;
+    }
+    .cinfo-title {
+      font-weight: 900;
+      font-size: 14px;
+      color: var(--dk);
+    }
+    .cinfo-sub {
+      font-size: 12px;
+      color: #666;
+      font-weight: 700;
+    }
+    .fg { margin-bottom: 12px; }
+    .fg label { display: block; font-weight: 800; font-size: 12px; margin-bottom: 4px; color: var(--dk); }
+    .fg input, .fg textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid var(--dk);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      outline: none;
+    }
+    .send-btn {
+      background: var(--g1);
+      color: #fff;
+      border: none;
+      width: 100%;
+      padding: 14px;
+      border-radius: 50px;
+      font-family: 'Bangers', cursive;
+      font-size: 20px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      margin-top: 10px;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="abar">
+    <div class="atrk">
+      <span class="aitm">🎉 LAUNCH OFFER: 7 A5 Posters <b>@ ₹149</b></span>
+      <span class="aitm">🔥 Anime & Vinyl Stickers <b>@ ₹15</b></span>
+      <span class="aitm">📦 Min order <b>₹199</b></span>
+      <span class="aitm">🚀 Fast Delivery Across India</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">StickyPicky</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html" class="active">Contact Us</a></li>
+      <li><a href="track.html">Track Order</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="openCartDrawer()">🛒 Cart <span class="cnum" id="CNUM">0</span></button>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <div class="sh" style="padding-bottom:10px">
+    <div class="stag">WE ARE HERE TO HELP</div>
+    <h2>GET IN TOUCH WITH US 💬</h2>
+    <p>Have questions about your order, custom polaroids, or bulk inquiries? We'd love to help!</p>
+  </div>
+
+  <!-- MAIN CONTACT CONTENT -->
+  <div class="contact-container">
+    
+    <!-- CONTACT INFO -->
+    <div>
+      <div class="cinfo-card">
+        <div class="cinfo-icon">📱</div>
+        <div>
+          <div class="cinfo-title">WhatsApp Support</div>
+          <div class="cinfo-sub">+91 95667 43599 (Mon–Sat, 10am–7pm IST)</div>
+        </div>
+      </div>
+
+      <div class="cinfo-card">
+        <div class="cinfo-icon">📧</div>
+        <div>
+          <div class="cinfo-title">Email Us</div>
+          <div class="cinfo-sub">stickypickyindia@gmail.com</div>
+        </div>
+      </div>
+
+      <div class="cinfo-card">
+        <div class="cinfo-icon">📍</div>
+        <div>
+          <div class="cinfo-title">Headquarters</div>
+          <div class="cinfo-sub">StickyPicky Creative Studio, Chennai, Tamil Nadu, India</div>
+        </div>
+      </div>
+
+      <a href="https://wa.me/919566743599?text=Hi!%20I%20have%20a%20question%20regarding%20StickyPicky" target="_blank" style="display:block;background:#25D366;color:#fff;text-align:center;padding:16px;border-radius:50px;font-family:'Bangers',cursive;font-size:22px;letter-spacing:2px;text-decoration:none;box-shadow:4px 4px 0 rgba(0,0,0,0.2);margin-top:20px">
+        💬 CHAT ON WHATSAPP NOW
+      </a>
+    </div>
+
+    <!-- MESSAGE FORM -->
+    <div class="contact-box">
+      <h2>SEND US A MESSAGE</h2>
+      <form onsubmit="event.preventDefault(); submitContactForm();">
+        <div class="fg">
+          <label>Your Name *</label>
+          <input type="text" id="C_NAME" required placeholder="Enter your name">
+        </div>
+        <div class="fg">
+          <label>Email Address / Phone *</label>
+          <input type="text" id="C_CONTACT" required placeholder="Email or Phone">
+        </div>
+        <div class="fg">
+          <label>Subject</label>
+          <input type="text" id="C_SUB" placeholder="Order Status / Custom Inquiry">
+        </div>
+        <div class="fg">
+          <label>Your Message *</label>
+          <textarea id="C_MSG" rows="4" required placeholder="Type your message or query here..."></textarea>
+        </div>
+        <button type="submit" class="send-btn">✉️ SEND MESSAGE</button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-container">
+      <div>
+        <div class="flogo">StickyPicky</div>
+        <p class="ftag">Making your world more colourful, one sticker at a time!</p>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Quick Links</h4>
+        <div class="flinks">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="track.html">Track Order</a>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">© 2026 StickyPicky. All rights reserved. <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;margin-left:14px;font-weight:800;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:6px;">🔐 Admin</a></div>
+  </footer>
+
+  <!-- STICKY CART BAR -->
+  <div class="scar" id="SCAR">
+    <div>
+      <div class="scpr" id="SCPR">₹0</div>
+      <div class="scit" id="SCIT">0 items</div>
+    </div>
+    <button class="scbtn" onclick="openCartDrawer()">🛒 View Cart</button>
+  </div>
+
+  <!-- CART DRAWER MODAL -->
+  <div class="cbg" id="CBG" onclick="closeCartDrawer()"></div>
+  <div class="cpanel" id="CPANEL">
+    <div class="cphd">
+      <h3>🛒 YOUR CART</h3>
+      <button class="cpclose" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cpitems" id="CPITEMS"></div>
+    <div class="cpfoot">
+      <div class="cptot">
+        <span>Total</span>
+        <span class="cptotpr" id="CPTOT">₹0</span>
+      </div>
+      <a href="checkout.html" class="cobtn" style="display:block;text-align:center;text-decoration:none">💳 PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    async function submitContactForm() {
+      const name = document.getElementById('C_NAME').value.trim();
+      const contact = document.getElementById('C_CONTACT').value.trim();
+      const subject = document.getElementById('C_SUB').value.trim() || 'StickyPicky Customer Inquiry';
+      const msg = document.getElementById('C_MSG').value.trim();
+
+      if (!name || !contact || !msg) {
+        showToast('⚠️ Please fill out all required fields!');
+        return;
+      }
+
+      showToast('✅ Thank you ' + name + '! Preparing message...');
+      
+      const bodyText = `Name: ${name}%0D%0AContact: ${contact}%0D%0ASubject: ${subject}%0D%0AMessage: ${msg}`;
+      const mailtoUrl = `mailto:stickypickyindia@gmail.com?subject=${encodeURIComponent(subject)}&body=${bodyText}`;
+      
+      try {
+        if (typeof sbPost === 'function') {
+          await sbPost('sv_orders', {
+            id: 'ENQ_' + Date.now().toString().slice(-6),
+            name: name,
+            phone: contact,
+            email: contact,
+            addr: msg,
+            pay: 'Enquiry Form',
+            items: [],
+            tot: 0,
+            status: 'New Inquiry',
+            date: new Date().toLocaleString('en-IN'),
+            ts: Date.now()
+          });
+        }
+      } catch (e) {
+        console.log('Saved enquiry offline mode');
+      }
+
+      window.location.href = mailtoUrl;
+
+      document.getElementById('C_NAME').value = '';
+      document.getElementById('C_CONTACT').value = '';
+      document.getElementById('C_SUB').value = '';
+      document.getElementById('C_MSG').value = '';
+    }
+  </script>
+</body>
+</html>

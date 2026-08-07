@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StickyPicky — Anime Stickers, Posters & Polaroids</title>
+  <meta name="description" content="Shop vibrant anime stickers, waterproof wall decals, aesthetic posters and custom polaroids at StickyPicky. Starting @ ₹15 only!">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="abar">
+    <div class="atrk">
+      <span class="aitm">🎉 LAUNCH OFFER: 7 A5 Posters <b>@ ₹149</b></span>
+      <span class="aitm">🔥 Anime & Vinyl Stickers <b>@ ₹15</b></span>
+      <span class="aitm">📦 Min order <b>₹199</b></span>
+      <span class="aitm">✨ Custom Retro Polaroids <b>@ ₹19</b></span>
+      <span class="aitm">🚀 Fast Delivery Across India</span>
+      <span class="aitm">🎉 LAUNCH OFFER: 7 A5 Posters <b>@ ₹149</b></span>
+      <span class="aitm">🔥 Anime & Vinyl Stickers <b>@ ₹15</b></span>
+      <span class="aitm">📦 Min order <b>₹199</b></span>
+      <span class="aitm">✨ Custom Retro Polaroids <b>@ ₹19</b></span>
+      <span class="aitm">🚀 Fast Delivery Across India</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">StickyPicky</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="track.html">Track Order</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="openCartDrawer()">🛒 Cart <span class="cnum" id="CNUM">0</span></button>
+    </div>
+  </nav>
+
+  <!-- HERO CAROUSEL -->
+  <div class="hbanner-wrap" id="HBWRAP">
+    <div class="hbanner-track" id="HBTRACK"></div>
+    <button class="hbarr prev" onclick="hbSlide(-1)">‹</button>
+    <button class="hbarr next" onclick="hbSlide(1)">›</button>
+    <div class="hbanner-dots" id="HBDOTS"></div>
+  </div>
+
+  <!-- SHOP BY CATEGORY -->
+  <div class="sh">
+    <div class="stag">SHOP BY CATEGORY</div>
+    <h2>WHAT ARE YOU LOOKING FOR? 👀</h2>
+  </div>
+  <section class="cats">
+    <div class="cgrid">
+      <a href="shop.html?cat=sticker" class="ccard">
+        <div class="cimg"><img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80" alt="Anime Stickers"></div>
+        <div class="cnm">ANIME STICKERS</div>
+        <div class="cpr">From ₹15</div>
+      </a>
+      <a href="shop.html?cat=poster" class="ccard">
+        <div class="cimg"><img src="images/sakura_poster_1784612794472.webp" alt="Posters"></div>
+        <div class="cnm">ROOM POSTERS</div>
+        <div class="cpr">From ₹29</div>
+      </a>
+      <a href="shop.html?cat=polaroid" class="ccard">
+        <div class="cimg"><img src="images/polaroid_single_1784612854745.webp" alt="Polaroids"></div>
+        <div class="cnm">POLAROIDS</div>
+        <div class="cpr">₹19 each</div>
+      </a>
+      <a href="shop.html?cat=offer" class="ccard">
+        <div class="cimg"><img src="images/sunset_poster_1784612807623.webp" alt="Offers"></div>
+        <div class="cnm">LAUNCH OFFERS</div>
+        <div class="cpr">7 for ₹149</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- BEST SELLERS -->
+  <div class="sh">
+    <div class="stag">⭐ CUSTOMER FAVOURITES</div>
+    <h2>HOTTEST PICKS 🏆</h2>
+    <p>Hand-picked viral anime stickers and aesthetic room posters</p>
+  </div>
+  <section class="prods">
+    <div class="pgrid" id="G_BEST"></div>
+  </section>
+
+  <!-- LAUNCH OFFER CARD -->
+  <div class="sh">
+    <div class="stag">⚡ LIMITED TIME DEAL</div>
+    <h2>SPECIAL LAUNCH OFFER 🚀</h2>
+  </div>
+  <section class="osec">
+    <div class="ocard">
+      <div class="oribb">🔥 HOT DEAL</div>
+      <div style="height:160px;border-radius:16px;overflow:hidden;margin-bottom:14px;border:3px solid var(--dk);background:#fff">
+        <img src="images/sunset_poster_1784612807623.webp" style="width:100%;height:100%;object-fit:cover" alt="Launch Deal">
+      </div>
+      <h2 id="OFFER_TITLE">7 A5 POSTERS BUNDLE</h2>
+      <div class="ostrike" id="OFFER_ORIG_PRICE">Original Price: ₹203</div>
+      <div class="obig" id="OFFER_PRICE">₹149 ONLY</div>
+      <div class="olist">
+        <p>✅ Choose any 7 A5 Room Posters</p>
+        <p>✅ 300 GSM Ultra-HD Glossy Print</p>
+        <p>✅ Safe & Bubble-Wrapped Fast Shipping</p>
+      </div>
+      <button class="obtn" id="OFFER_BTN" onclick="openPosterPickerModal()">🛍️ CUSTOMIZE & ADD BUNDLE TO CART — ₹149</button>
+    </div>
+  </section>
+
+  <!-- WHY SHOP WITH US -->
+  <section class="wsec">
+    <div class="sh" style="padding-top:0">
+      <div class="stag">💪 STICKYPICKY PROMISE</div>
+      <h2>WHY SHOP WITH US?</h2>
+    </div>
+    <div class="wgrid">
+      <div class="wcard"><div class="wico">⚡</div><h3>Fast Shipping</h3><p>Dispatched in 24 hours across India</p></div>
+      <div class="wcard"><div class="wico">🎨</div><h3>Waterproof Vinyl</h3><p>Die-cut, scratchproof & super glossy</p></div>
+      <div class="wcard"><div class="wico">💸</div><h3>Unbeatable Prices</h3><p>Stickers starting at ₹15 only!</p></div>
+      <div class="wcard"><div class="wico">🤝</div><h3>Instant Support</h3><p>WhatsApp help anytime</p></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <div class="sh">
+    <div class="stag">💬 REVIEWS</div>
+    <h2>HAPPY CUSTOMERS SPEAK!</h2>
+  </div>
+  <section class="rsec">
+    <div class="rgrid">
+      <div class="rcard">
+        <div class="rstars">⭐⭐⭐⭐⭐</div>
+        <p class="rtxt">"Quality of the Gojo & Nezuko anime stickers is INSANE! Totally waterproof on my laptop waterbottle."</p>
+        <div class="rnm">Priya S., Chennai</div>
+        <div class="rchk">✅ Verified Purchase</div>
+      </div>
+      <div class="rcard">
+        <div class="rstars">⭐⭐⭐⭐⭐</div>
+        <p class="rtxt">"The 7 A5 posters launch deal arrived in 3 days! My hostel room looks so aesthetic now."</p>
+        <div class="rnm">Ananya K., Bangalore</div>
+        <div class="rchk">✅ Verified Purchase</div>
+      </div>
+      <div class="rcard">
+        <div class="rstars">⭐⭐⭐⭐⭐</div>
+        <p class="rtxt">"Custom polaroids turned out so sharp! Super vibrant colors and cute packaging."</p>
+        <div class="rnm">Rohan M., Mumbai</div>
+        <div class="rchk">✅ Verified Purchase</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="isec">
+    <div class="sh">
+      <div class="stag" style="background:linear-gradient(135deg,#FF3CAC,#FF6B35)">📸 @STICKYPICKY</div>
+      <h2>TAG US ON INSTAGRAM 💫</h2>
+      <p>Tag #StickyPicky to get featured on our feed!</p>
+    </div>
+    <div class="igrid">
+      <div class="iitem"><img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=600&auto=format&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover" alt="Insta 1"></div>
+      <div class="iitem"><img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?w=600&auto=format&fit=crop&q=80" style="width:100%;height:100%;object-fit:cover" alt="Insta 2"></div>
+      <div class="iitem"><img src="images/sakura_poster_1784612794472.webp" style="width:100%;height:100%;object-fit:cover" alt="Insta 3"></div>
+      <div class="iitem"><img src="images/sunset_poster_1784612807623.webp" style="width:100%;height:100%;object-fit:cover" alt="Insta 4"></div>
+    </div>
+    <div class="ifollow">
+      <a href="https://www.instagram.com/stickypicky.in" target="_blank">📱 Follow @stickypicky.in</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-container">
+      <div>
+        <div class="flogo">StickyPicky</div>
+        <p class="ftag">Making your world more colourful, one sticker at a time!</p>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Quick Links</h4>
+        <div class="flinks">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop All Products</a>
+          <a href="track.html">Track Order Status</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Contact Support</h4>
+        <div class="fcon">
+          <p>📧 stickypickyindia@gmail.com</p>
+          <p>📱 WhatsApp: +91 95667 43599</p>
+          <p>🕒 Mon–Sat, 10am–7pm IST</p>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">© 2026 StickyPicky. All rights reserved. Made with ❤️ in India. <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;margin-left:14px;font-weight:800;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:6px;">🔐 Admin</a></div>
+  </footer>
+
+  <!-- POSTER PICKER MODAL -->
+  <div class="cbg" id="POSTER_MODAL_BG" onclick="closePosterPickerModal()"></div>
+  <div class="cpanel" id="POSTER_MODAL" style="max-width:440px;height:auto;max-height:85vh;border-radius:24px;inset:auto;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.9);opacity:0;pointer-events:none;transition:all 0.3s ease;padding:24px;border:4px solid var(--dk);box-shadow:var(--shadow-neo-lg)">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <h3 style="font-family:'Bangers',cursive;font-size:24px;margin:0">🎨 CHOOSE YOUR 7 POSTERS</h3>
+      <button onclick="closePosterPickerModal()" style="background:none;border:none;font-size:20px;cursor:pointer;font-weight:900">✕</button>
+    </div>
+    <p style="font-size:12px;color:#666;font-weight:700;margin-bottom:14px">Select any 7 A5 posters to include in your ₹149 Launch Bundle (<span id="P_COUNT_DISP" style="color:var(--pk);font-weight:900">0 / 7 selected</span>)</p>
+    <div id="POSTER_SELECTION_LIST" style="max-height:300px;overflow-y:auto;margin-bottom:16px;display:flex;flex-direction:column;gap:8px"></div>
+    <button id="P_CONFIRM_BTN" onclick="confirmPosterBundle()" style="width:100%;padding:14px;background:var(--g1);color:#fff;border:none;border-radius:50px;font-family:'Bangers',cursive;font-size:20px;cursor:pointer;letter-spacing:1px">CONFIRM BUNDLE & ADD TO CART</button>
+  </div>
+
+  <!-- STICKY CART BAR -->
+  <div class="scar" id="SCAR">
+    <div>
+      <div class="scpr" id="SCPR">₹0</div>
+      <div class="scit" id="SCIT">0 items</div>
+    </div>
+    <button class="scbtn" onclick="openCartDrawer()">🛒 View Cart</button>
+  </div>
+
+  <!-- WHATSAPP FLOATING BUTTON -->
+  <a class="wabtn" href="https://wa.me/919566743599?text=Hi!%20I%20want%20to%20order%20stickers%20from%20StickyPicky!" target="_blank">💬</a>
+
+  <!-- CART DRAWER MODAL -->
+  <div class="cbg" id="CBG" onclick="closeCartDrawer()"></div>
+  <div class="cpanel" id="CPANEL">
+    <div class="cphd">
+      <h3>🛒 YOUR CART</h3>
+      <button class="cpclose" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cpitems" id="CPITEMS"></div>
+    <div class="cpfoot">
+      <div class="cptot">
+        <span>Total</span>
+        <span class="cptotpr" id="CPTOT">₹0</span>
+      </div>
+      <div class="minnote" id="MINNOTE">⚠️ Add ₹<span id="MINL">199</span> more (Min ₹199)</div>
+      <a href="checkout.html" class="cobtn" style="display:block;text-align:center;text-decoration:none">💳 PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    let _hbIdx = 0, _hbTimer = null;
+    let selectedPostersMap = {};
+
+    function renderCarousel() {
+      const track = document.getElementById('HBTRACK');
+      const dots = document.getElementById('HBDOTS');
+      if (!track || !STORE_BANNERS.length) return;
+
+      track.innerHTML = STORE_BANNERS.map((b, i) => `
+        <div class="hbanner-slide">
+          <img src="${b.img}" alt="${b.title}">
+          <div class="hbs-over">
+            ${b.badge ? `<span class="hbs-badge">${b.badge}</span>` : ''}
+            <div class="hbs-title">${b.title}</div>
+            ${b.sub ? `<div class="hbs-sub">${b.sub}</div>` : ''}
+            <a href="${b.cta_link || 'shop.html'}" class="hbs-btn">${b.cta || 'Shop Now'} →</a>
+          </div>
+        </div>
+      `).join('');
+
+      dots.innerHTML = STORE_BANNERS.map((_, i) => `<div class="hbd ${i===0?'on':''}" onclick="hbGo(${i})"></div>`).join('');
+      _hbIdx = 0;
+      hbApply();
+      clearInterval(_hbTimer);
+      _hbTimer = setInterval(() => hbSlide(1), 4000);
+    }
+
+    function hbApply() {
+      const track = document.getElementById('HBTRACK');
+      const dots = document.querySelectorAll('.hbd');
+      if (track) track.style.transform = `translateX(-${_hbIdx * 100}%)`;
+      dots.forEach((d, i) => d.classList.toggle('on', i === _hbIdx));
+    }
+
+    function hbSlide(dir) {
+      if (!STORE_BANNERS.length) return;
+      _hbIdx = (_hbIdx + dir + STORE_BANNERS.length) % STORE_BANNERS.length;
+      hbApply();
+    }
+    function hbGo(i) { _hbIdx = i; hbApply(); }
+
+    function renderBestSellers() {
+      const el = document.getElementById('G_BEST');
+      if (!el) return;
+      const list = STORE_PRODUCTS.slice(0, 8);
+      el.innerHTML = list.map(p => `
+        <div class="pcard">
+          <div class="pthumb" onclick="location.href='product.html?id=${p.id}'">
+            <img src="${p.img}" alt="${p.nm}">
+            ${p.bg ? `<span class="pbadge ${p.bt||''}">${p.bg}</span>` : ''}
+          </div>
+          <div class="pinfo">
+            <h3 onclick="location.href='product.html?id=${p.id}'">${p.nm}</h3>
+            <p>${p.ds}</p>
+            <div class="prow">
+              <span class="pprice">₹${p.pr}</span>
+              <button class="abtn" onclick="addToCart('${p.id}')">+ Add</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openPosterPickerModal() {
+      const modal = document.getElementById('POSTER_MODAL');
+      const bg = document.getElementById('POSTER_MODAL_BG');
+      const listEl = document.getElementById('POSTER_SELECTION_LIST');
+      selectedPostersMap = {};
+
+      const posterProds = (STORE_PRODUCTS || []).filter(p => p.cat === 'poster' || p.id.startsWith('p'));
+      if (!posterProds.length) {
+        posterProds.push(
+          { id: 'p1', nm: 'Sakura Dream Poster' },
+          { id: 'p2', nm: 'Sunset Blaze Vaporwave Poster' },
+          { id: 'p3', nm: 'Ocean Waves Aesthetic Poster' },
+          { id: 'p4', nm: 'Cyberpunk City Nights Poster' }
+        );
+      }
+
+      listEl.innerHTML = posterProds.map(p => `
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#f8f8ff;border-radius:12px;border:1px solid #eee">
+          <div style="font-weight:800;font-size:13px;color:var(--dk)">${p.nm}</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <button onclick="changePosterQty('${p.id}', -1)" style="width:26px;height:26px;border-radius:50%;border:1px solid var(--dk);background:#fff;font-weight:900;cursor:pointer">-</button>
+            <span id="PQ_${p.id}" style="font-weight:900;font-size:14px">0</span>
+            <button onclick="changePosterQty('${p.id}', 1)" style="width:26px;height:26px;border-radius:50%;border:none;background:var(--g1);color:#fff;font-weight:900;cursor:pointer">+</button>
+          </div>
+        </div>
+      `).join('');
+
+      updatePosterPickerCount();
+      if (modal) { modal.style.opacity = '1'; modal.style.pointerEvents = 'auto'; }
+      if (bg) bg.classList.add('on');
+    }
+
+    function closePosterPickerModal() {
+      const modal = document.getElementById('POSTER_MODAL');
+      const bg = document.getElementById('POSTER_MODAL_BG');
+      if (modal) { modal.style.opacity = '0'; modal.style.pointerEvents = 'none'; }
+      if (bg) bg.classList.remove('on');
+    }
+
+    function changePosterQty(pId, delta) {
+      const totalSelected = Object.values(selectedPostersMap).reduce((a, b) => a + b, 0);
+      const curr = selectedPostersMap[pId] || 0;
+      if (delta > 0 && totalSelected >= 7) {
+        showToast('⚠️ Maximum 7 posters allowed for this launch deal!');
+        return;
+      }
+      const next = Math.max(0, curr + delta);
+      if (next === 0) delete selectedPostersMap[pId];
+      else selectedPostersMap[pId] = next;
+
+      const qEl = document.getElementById('PQ_' + pId);
+      if (qEl) qEl.textContent = next;
+      updatePosterPickerCount();
+    }
+
+    function updatePosterPickerCount() {
+      const totalSelected = Object.values(selectedPostersMap).reduce((a, b) => a + b, 0);
+      const disp = document.getElementById('P_COUNT_DISP');
+      if (disp) disp.textContent = totalSelected + ' / 7 selected';
+    }
+
+    function confirmPosterBundle() {
+      const totalSelected = Object.values(selectedPostersMap).reduce((a, b) => a + b, 0);
+      if (totalSelected === 0) {
+        showToast('⚠️ Please select at least 1 poster!');
+        return;
+      }
+      const chosenList = [];
+      for (const [pId, qty] of Object.entries(selectedPostersMap)) {
+        const prod = STORE_PRODUCTS.find(x => x.id === pId);
+        const name = prod ? prod.nm : pId;
+        chosenList.push(`${name} ×${qty}`);
+      }
+      addToCart('launch_offer', 1, { selectedPosters: chosenList });
+      closePosterPickerModal();
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initStoreData();
+      renderCarousel();
+      renderBestSellers();
+      window.renderFeaturedProducts = renderBestSellers;
+      window.renderBanners = renderCarousel;
+    });
+  </script>
+</body>
+</html>

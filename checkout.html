@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & Payment — StickyPicky</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    .co-container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+    .co-box {
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid var(--dk);
+      box-shadow: var(--shadow-neo);
+      padding: 24px 20px;
+    }
+    .co-box h2 {
+      font-family: 'Bangers', cursive;
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    .fg { margin-bottom: 12px; }
+    .fg label { display: block; font-weight: 800; font-size: 12px; margin-bottom: 4px; color: var(--dk); }
+    .fg input, .fg textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid var(--dk);
+      border-radius: 10px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      outline: none;
+    }
+    .fg input:focus, .fg textarea:focus { border-color: var(--pk); }
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed #eee;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .pay-btn {
+      background: var(--g1);
+      color: #fff;
+      border: none;
+      width: 100%;
+      padding: 16px;
+      border-radius: 50px;
+      font-family: 'Bangers', cursive;
+      font-size: 22px;
+      cursor: pointer;
+      letter-spacing: 2px;
+      margin-top: 16px;
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-brand">
+      <a href="index.html" class="logo">StickyPicky</a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="track.html">Track Order</a></li>
+      </ul>
+    </div>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="location.href='shop.html'">🛍️ Continue Shopping</button>
+    </div>
+  </nav>
+
+  <!-- CHECKOUT MAIN -->
+  <div class="co-container" id="CHECKOUT_MAIN">
+    <!-- DELIVERY FORM -->
+    <div class="co-box" id="CO_FORM_BOX">
+      <h2>📦 SHIPPING ADDRESS</h2>
+      <div class="fg">
+        <label>Full Name *</label>
+        <input id="FN" type="text" placeholder="Enter your full name">
+      </div>
+      <div class="fg">
+        <label>Phone Number (10-Digit Mobile Number) *</label>
+        <input id="FP" type="tel" placeholder="e.g. 9566743599" pattern="^[6-9]\d{9}$">
+      </div>
+      <div class="fg">
+        <label>Email Address</label>
+        <input id="FE" type="email" placeholder="you@example.com">
+      </div>
+      <div class="fg">
+        <label>Complete Delivery Address (with Pincode) *</label>
+        <textarea id="FA" rows="3" placeholder="House No, Street Name, Landmark, City, State, Pincode"></textarea>
+      </div>
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <div class="co-box" id="CO_SUMMARY_BOX">
+      <h2>🛒 ORDER SUMMARY</h2>
+      <div id="CO_ITEMS_LIST"></div>
+      
+      <div style="background:#f0fff4;border-radius:12px;padding:14px;margin:16px 0;display:flex;justify-content:space-between;align-items:center;border:2px solid var(--gr)">
+        <span style="font-weight:900;font-size:15px">Total Amount Payable</span>
+        <span id="CO_GRAND_TOTAL" style="font-family:'Bangers',cursive;font-size:28px;color:var(--pk);letter-spacing:1px">₹0</span>
+      </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(140px, 1fr));gap:10px;margin-top:8px">
+          <label id="PAY_OPT_ONLINE" style="background:#fff5fb;border:2px solid var(--pk);border-radius:12px;padding:12px 10px;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <input type="radio" name="pay_method" value="Online" checked onchange="selectPayMethod('Online')">
+            <div>
+              <div style="font-weight:900;font-size:13px;color:var(--dk)">💳 Online Payment</div>
+              <div style="font-size:10px;color:#777;font-weight:700">UPI · Cards · Razorpay</div>
+            </div>
+          </label>
+
+          <label id="PAY_OPT_WA" style="background:#f8f8ff;border:2px solid #ddd;border-radius:12px;padding:12px 10px;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <input type="radio" name="pay_method" value="WA" onchange="selectPayMethod('WA')">
+            <div>
+              <div style="font-weight:900;font-size:13px;color:#25D366">💬 WhatsApp Order</div>
+              <div style="font-size:10px;color:#777;font-weight:700">Send Order to WhatsApp</div>
+            </div>
+          </label>
+
+          <label id="PAY_OPT_COD" style="background:#f8f8ff;border:2px solid #ddd;border-radius:12px;padding:12px 10px;cursor:pointer;display:flex;align-items:center;gap:8px">
+            <input type="radio" name="pay_method" value="COD" onchange="selectPayMethod('COD')">
+            <div>
+              <div style="font-weight:900;font-size:13px;color:var(--dk)">💵 Cash on Delivery</div>
+              <div style="font-size:10px;color:#777;font-weight:700">Pay cash upon delivery</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <button class="pay-btn" id="PAYBTN" onclick="executeOrderPayment()">
+        <span id="PAYBTNTEXT">💳 PAY NOW WITH RAZORPAY</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ORDER SUCCESS SCREEN -->
+  <div class="co-container" id="ORDER_SUCCESS_BOX" style="display:none;max-width:600px;text-align:center">
+    <div class="co-box" style="grid-column:1/-1;padding:40px 24px">
+      <div style="font-size:64px">🎉</div>
+      <h2 style="color:var(--gr);font-size:42px">ORDER PLACED SUCCESSFULLY!</h2>
+      <p style="font-weight:700;color:#555;font-size:14px;margin:8px 0">Thank you for shopping with StickyPicky!</p>
+      <div id="CONFIRMED_ORD_ID" style="background:#f0fff4;border-radius:12px;padding:12px;font-family:monospace;font-weight:900;color:var(--dk);font-size:18px;margin:16px 0;border:2px dashed var(--gr)">Order #SV00000</div>
+      <div id="CONFIRMED_PAY_MODE" style="font-size:13px;font-weight:800;color:var(--pk);margin-bottom:8px">Payment Mode: Cash on Delivery</div>
+      <p style="font-size:13px;color:#888;font-weight:600">Your order will be packed and shipped in 1-2 business days.</p>
+      
+      <div style="display:flex;gap:12px;margin-top:24px">
+        <a href="track.html" class="pay-btn" style="text-decoration:none;display:block;background:var(--dk);color:var(--yw)">🚚 TRACK ORDER STATUS</a>
+        <a href="shop.html" class="pay-btn" style="text-decoration:none;display:block">🛍️ CONTINUE SHOPPING</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    let selectedPaymentMode = 'Online';
+
+    function safeStr(s) {
+      return typeof window.escapeHTML === 'function' ? window.escapeHTML(String(s || '')) : String(s || '');
+    }
+
+    function selectPayMethod(mode) {
+      selectedPaymentMode = mode;
+      const btnText = document.getElementById('PAYBTNTEXT');
+      const optOnline = document.getElementById('PAY_OPT_ONLINE');
+      const optWA = document.getElementById('PAY_OPT_WA');
+      const optCOD = document.getElementById('PAY_OPT_COD');
+
+      if (mode === 'COD') {
+        btnText.textContent = '📦 PLACE ORDER (CASH ON DELIVERY)';
+        if (optCOD) { optCOD.style.borderColor = 'var(--pk)'; optCOD.style.background = '#fff5fb'; }
+        if (optOnline) { optOnline.style.borderColor = '#ddd'; optOnline.style.background = '#f8f8ff'; }
+        if (optWA) { optWA.style.borderColor = '#ddd'; optWA.style.background = '#f8f8ff'; }
+      } else if (mode === 'WA') {
+        btnText.textContent = '💬 SEND ORDER VIA WHATSAPP (+91 9566743599)';
+        if (optWA) { optWA.style.borderColor = '#25D366'; optWA.style.background = '#e8fdf0'; }
+        if (optOnline) { optOnline.style.borderColor = '#ddd'; optOnline.style.background = '#f8f8ff'; }
+        if (optCOD) { optCOD.style.borderColor = '#ddd'; optCOD.style.background = '#f8f8ff'; }
+      } else {
+        btnText.textContent = '💳 PAY NOW WITH RAZORPAY';
+        if (optOnline) { optOnline.style.borderColor = 'var(--pk)'; optOnline.style.background = '#fff5fb'; }
+        if (optCOD) { optCOD.style.borderColor = '#ddd'; optCOD.style.background = '#f8f8ff'; }
+        if (optWA) { optWA.style.borderColor = '#ddd'; optWA.style.background = '#f8f8ff'; }
+      }
+    }
+
+    function renderCheckoutPage() {
+      let activeCart = [];
+      try {
+        const c = localStorage.getItem('sp_cart') || localStorage.getItem('sv_cart');
+        if (c) activeCart = JSON.parse(c);
+      } catch(e){}
+      
+      if ((!activeCart || !activeCart.length) && typeof window.CART !== 'undefined' && window.CART && window.CART.length) {
+        activeCart = window.CART;
+      }
+      
+      if (activeCart && activeCart.length) {
+        window.CART = activeCart;
+        CART = activeCart;
+      }
+
+      const tot = getCartTotal();
+      const listEl = document.getElementById('CO_ITEMS_LIST');
+      const grandTotalEl = document.getElementById('CO_GRAND_TOTAL');
+
+      if (!CART || !CART.length) {
+        showToast('Your cart is empty! Redirecting to Shop...');
+        setTimeout(() => {
+          if (!CART || !CART.length) {
+            window.location.href = 'shop.html';
+          }
+        }, 1500);
+        return;
+      }
+
+      grandTotalEl.textContent = '₹' + tot;
+      listEl.innerHTML = CART.map(item => `
+        <div class="order-item-row">
+          <span>${safeStr(item.nm)} (×${item.q})</span>
+          <span>₹${item.pr * item.q}</span>
+        </div>
+      `).join('');
+    }
+
+    async function executeOrderPayment() {
+      const name = document.getElementById('FN').value.trim();
+      const phone = document.getElementById('FP').value.trim();
+      const addr = document.getElementById('FA').value.trim();
+      const email = document.getElementById('FE').value.trim();
+
+      if (!name || !phone || !addr) {
+        alert('⚠️ Please fill all required fields:\n- Full Name\n- Phone Number (10 digits)\n- Complete Delivery Address');
+        showToast('⚠️ Please fill all required fields!');
+        return;
+      }
+
+      const cleanPhone = phone.replace(/[\s\-\+]/g, '').slice(-10);
+      if (!/^[6-9]\d{9}$/.test(cleanPhone)) {
+        alert('⚠️ Please enter a valid 10-digit Indian Mobile Number (e.g., 9566743599)');
+        showToast('⚠️ Please enter a valid 10-digit Indian mobile number (e.g., 9566743599)!');
+        return;
+      }
+
+      if (addr.length < 8) {
+        alert('⚠️ Please enter full delivery address with Pincode!');
+        showToast('⚠️ Please enter full delivery address!');
+        return;
+      }
+
+      const tot = getCartTotal();
+      const min = (window.STORE_CONFIG && window.STORE_CONFIG.min_order !== undefined) ? window.STORE_CONFIG.min_order : 0;
+      if (min > 0 && tot < min) {
+        showToast('⚠️ Minimum order value is ₹' + min + '! Add more items to reach ₹' + min + '.');
+        return;
+      }
+
+      const ordId = 'SV' + Date.now().toString().slice(-6);
+
+      async function saveOrderToSupabase(payId) {
+        const orderData = {
+          id: ordId,
+          name: name,
+          phone: cleanPhone,
+          email: email,
+          addr: addr,
+          pay: payId,
+          items: JSON.parse(JSON.stringify(CART)),
+          tot: tot,
+          status: 'New',
+          date: new Date().toLocaleString('en-IN'),
+          ts: Date.now()
+        };
+        try {
+          await sbPost('sv_orders', orderData);
+        } catch (e) {
+          console.error('Order save error:', e);
+        }
+        try {
+          const localOrds = JSON.parse(localStorage.getItem('sp_local_orders') || '[]');
+          localOrds.unshift(orderData);
+          localStorage.setItem('sp_local_orders', JSON.stringify(localOrds));
+        } catch(err) {}
+
+        clearCart();
+        document.getElementById('CHECKOUT_MAIN').style.display = 'none';
+        document.getElementById('CONFIRMED_ORD_ID').textContent = 'Order #' + ordId;
+        document.getElementById('CONFIRMED_PAY_MODE').textContent = 'Payment Mode: ' + payId;
+        document.getElementById('ORDER_SUCCESS_BOX').style.display = 'grid';
+      }
+
+      if (selectedPaymentMode === 'WA') {
+        const itemsSnapshot = JSON.parse(JSON.stringify(CART));
+        const itemsLines = itemsSnapshot.map((i, idx) => `${idx + 1}. ${i.nm} (Qty: ${i.q}) - Rs.${i.pr * i.q}`).join('\n');
+
+        await saveOrderToSupabase('WhatsApp Order');
+        
+        const waNum = '919566743599';
+
+        const rawText = `*NEW ORDER FROM STICKYPICKY.IN*\n\n` +
+          `*Order ID:* #${ordId}\n` +
+          `*Customer Name:* ${name}\n` +
+          `*Phone Number:* ${cleanPhone}\n` +
+          `*Email:* ${email || 'N/A'}\n` +
+          `*Delivery Address:* ${addr}\n\n` +
+          `*ORDERED ITEMS:*\n${itemsLines || 'Sticker items'}\n\n` +
+          `*Total Amount:* Rs.${tot}\n` +
+          `*Payment Option:* WhatsApp Order / Cash`;
+
+        const waUrl = `https://wa.me/${waNum}?text=${encodeURIComponent(rawText)}`;
+        
+        showToast('✅ Order Saved! Opening WhatsApp...');
+        setTimeout(() => {
+          window.open(waUrl, '_blank');
+        }, 600);
+        return;
+      }
+
+      if (selectedPaymentMode === 'COD') {
+        await saveOrderToSupabase('Cash on Delivery (COD)');
+        showToast('✅ Order Placed with Cash on Delivery!');
+        return;
+      }
+
+      const rzpKey = (window.STORE_CONFIG && window.STORE_CONFIG.rzp_key) ? window.STORE_CONFIG.rzp_key.trim() : '';
+      if (!rzpKey || rzpKey === 'YOUR_KEY_ID_HERE') {
+        // Safe fallback if Key is not configured yet in Admin panel
+        await saveOrderToSupabase('Online Payment (Success Test)');
+        showToast('✅ Order Placed Successfully!');
+        return;
+      }
+
+      // Open Razorpay Live Gateway Modal
+      try {
+        const options = {
+          key: rzpKey,
+          amount: tot * 100,
+          currency: 'INR',
+          name: STORE_CONFIG.nm || 'StickyPicky',
+          description: 'Order #' + ordId,
+          prefill: { name: name, email: email || '', contact: cleanPhone },
+          notes: { address: addr, order_id: ordId },
+          theme: { color: '#FF3CAC' },
+          handler: function (resp) {
+            saveOrderToSupabase('Razorpay|' + (resp.razorpay_payment_id || 'SUCCESS'));
+            showToast('✅ Payment successful!');
+          },
+          modal: {
+            ondismiss: function() {
+              showToast('⚠️ Payment cancelled by user.');
+            }
+          }
+        };
+
+        if (window.Razorpay) {
+          const rzpObj = new Razorpay(options);
+          rzpObj.on('payment.failed', function (resp){
+            alert('⚠️ Payment Failed: ' + (resp.error?.description || 'Transaction declined'));
+          });
+          rzpObj.open();
+        } else {
+          alert('Unable to load Razorpay SDK. Please check your internet connection.');
+        }
+      } catch(e) {
+        console.error('Razorpay launch error:', e);
+        alert('Razorpay key error: ' + e.message);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initStoreData();
+      renderCheckoutPage();
+    });
+  </script>
+</body>
+</html>

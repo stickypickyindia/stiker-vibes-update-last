@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Order — StickyPicky</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .track-wrap {
+      max-width: 680px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .track-box {
+      background: #fff;
+      border-radius: 20px;
+      border: 3px solid var(--dk);
+      box-shadow: var(--shadow-neo);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .track-box h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 36px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .track-input-group {
+      display: flex;
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .track-input-group input {
+      flex: 1;
+      padding: 12px 18px;
+      border: 2px solid var(--dk);
+      border-radius: 30px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      outline: none;
+    }
+    .track-btn {
+      background: var(--g1);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-family: 'Bangers', cursive;
+      font-size: 18px;
+      cursor: pointer;
+      letter-spacing: 1px;
+    }
+    .timeline {
+      display: flex;
+      justify-content: space-between;
+      margin: 30px 0 10px;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      background: #eee;
+      z-index: 1;
+    }
+    .tstep {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .tdot {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #eee;
+      color: #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      border: 3px solid #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .tstep.active .tdot {
+      background: var(--gr);
+      color: var(--dk);
+    }
+    .tlabel {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--dk);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">StickyPicky</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="track.html" class="active">Track Order</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="openCartDrawer()">🛒 Cart <span class="cnum" id="CNUM">0</span></button>
+    </div>
+  </nav>
+
+  <!-- TRACKING SECTION -->
+  <div class="track-wrap">
+    <div class="track-box">
+      <h1>🚚 TRACK YOUR ORDER</h1>
+      <p style="font-size:13px;font-weight:700;color:#666">Enter your Order ID (e.g., SV12345) or Phone Number to check status</p>
+      
+      <div class="track-input-group">
+        <input type="text" id="TRACK_QUERY" placeholder="Order ID or Phone Number">
+        <button class="track-btn" onclick="searchOrder()">TRACK NOW</button>
+      </div>
+
+      <div id="TRACK_RESULT" style="display:none;margin-top:20px;text-align:left"></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="fbot">© 2026 StickyPicky. All rights reserved. <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;margin-left:14px;font-weight:800;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:6px;">🔐 Admin</a></div>
+  </footer>
+
+  <!-- STICKY CART BAR -->
+  <div class="scar" id="SCAR">
+    <div>
+      <div class="scpr" id="SCPR">₹0</div>
+      <div class="scit" id="SCIT">0 items</div>
+    </div>
+    <button class="scbtn" onclick="openCartDrawer()">🛒 View Cart</button>
+  </div>
+
+  <!-- CART DRAWER MODAL -->
+  <div class="cbg" id="CBG" onclick="closeCartDrawer()"></div>
+  <div class="cpanel" id="CPANEL">
+    <div class="cphd">
+      <h3>🛒 YOUR CART</h3>
+      <button class="cpclose" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cpitems" id="CPITEMS"></div>
+    <div class="cpfoot">
+      <div class="cptot">
+        <span>Total</span>
+        <span class="cptotpr" id="CPTOT">₹0</span>
+      </div>
+      <a href="checkout.html" class="cobtn" style="display:block;text-align:center;text-decoration:none">💳 PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    function safeStr(s) {
+      return typeof window.escapeHTML === 'function' ? window.escapeHTML(String(s || '')) : String(s || '');
+    }
+
+    async function searchOrder() {
+      const q = document.getElementById('TRACK_QUERY').value.trim();
+      const resEl = document.getElementById('TRACK_RESULT');
+      if (!q) {
+        showToast('⚠️ Please enter Order ID or Phone Number');
+        return;
+      }
+
+      resEl.style.display = 'block';
+      resEl.innerHTML = '<p style="text-align:center;padding:20px;color:#888;font-weight:700">⏳ Searching order in database...</p>';
+
+      try {
+        const queryClean = q.replace('#','');
+        const orders = await sbGet('sv_orders', `or=(id.eq.${encodeURIComponent(queryClean)},phone.eq.${encodeURIComponent(queryClean)})`);
+
+        if (!orders || !orders.length) {
+          resEl.innerHTML = `
+            <div style="background:#fff0f0;border-radius:12px;padding:16px;text-align:center;border:2px solid #e53935">
+              <div style="font-size:32px">❌</div>
+              <h3 style="color:#e53935;font-weight:900;margin-top:4px">No Order Found</h3>
+              <p style="font-size:12px;font-weight:600;color:#666">Check your order ID or phone number and try again.</p>
+            </div>`;
+          return;
+        }
+
+        const o = orders[0];
+        const statusMap = { 'New': 1, 'Packed': 2, 'Shipped': 3, 'Delivered': 4 };
+        const stepNum = statusMap[o.status] || 1;
+
+        resEl.innerHTML = `
+          <div style="background:#f9f9ff;border-radius:16px;padding:18px;border:2px solid #eee">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div>
+                <span style="font-family:'Bangers',cursive;font-size:24px;color:var(--pk)">#${safeStr(o.id)}</span>
+                <div style="font-weight:900;font-size:14px">${safeStr(o.name)} (${safeStr(o.phone)})</div>
+                <div style="font-size:11px;color:#888">${safeStr(o.date)}</div>
+              </div>
+              <div style="text-align:right">
+                <div style="font-family:'Bangers',cursive;font-size:24px;color:var(--pk)">₹${o.tot}</div>
+                <span style="background:var(--yw);color:var(--dk);padding:3px 10px;border-radius:12px;font-size:11px;font-weight:900">${safeStr(o.status)}</span>
+              </div>
+            </div>
+
+            <div class="timeline">
+              <div class="tstep ${stepNum >= 1 ? 'active' : ''}">
+                <div class="tdot">1</div>
+                <div class="tlabel">Order Received</div>
+              </div>
+              <div class="tstep ${stepNum >= 2 ? 'active' : ''}">
+                <div class="tdot">2</div>
+                <div class="tlabel">Packed</div>
+              </div>
+              <div class="tstep ${stepNum >= 3 ? 'active' : ''}">
+                <div class="tdot">3</div>
+                <div class="tlabel">Shipped</div>
+              </div>
+              <div class="tstep ${stepNum >= 4 ? 'active' : ''}">
+                <div class="tdot">4</div>
+                <div class="tlabel">Delivered</div>
+              </div>
+            </div>
+
+            <div style="font-size:12px;font-weight:700;color:#555;margin-top:10px;background:#fff;padding:10px;border-radius:8px">
+              <b>📍 Delivery Address:</b> ${safeStr(o.addr)}
+            </div>
+          </div>
+        `;
+      } catch (e) {
+        resEl.innerHTML = `<p style="color:#e53935;font-weight:800;text-align:center">Error fetching order: ${safeStr(e.message)}</p>`;
+      }
+    }
+  </script>
+</body>
+</html>

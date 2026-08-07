@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop Anime Stickers, Wall Decals & Posters — StickyPicky</title>
+  <meta name="description" content="Browse our complete collection of anime vinyl stickers, room wall decals, aesthetic posters and custom retro polaroids.">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .shop-bar {
+      max-width: 1200px;
+      margin: 20px auto 10px;
+      padding: 0 20px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      padding: 12px 18px;
+      border: 3px solid var(--dk);
+      border-radius: 30px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      outline: none;
+      box-shadow: 3px 3px 0 var(--dk);
+    }
+    .search-input:focus {
+      border-color: var(--pk);
+    }
+    .filter-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ftab {
+      padding: 8px 16px;
+      border-radius: 20px;
+      border: 2px solid var(--dk);
+      background: #fff;
+      font-weight: 800;
+      font-size: 13px;
+      cursor: pointer;
+      box-shadow: 2px 2px 0 var(--dk);
+      transition: all 0.15s;
+    }
+    .ftab.active, .ftab:hover {
+      background: var(--dk);
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="abar">
+    <div class="atrk">
+      <span class="aitm">🎉 LAUNCH OFFER: 7 A5 Posters <b>@ ₹149</b></span>
+      <span class="aitm">🔥 Anime & Vinyl Stickers <b>@ ₹15</b></span>
+      <span class="aitm">📦 Min order <b>₹199</b></span>
+      <span class="aitm">✨ Custom Retro Polaroids <b>@ ₹19</b></span>
+      <span class="aitm">🚀 Fast Delivery Across India</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">StickyPicky</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html" class="active">Shop</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="track.html">Track Order</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="openCartDrawer()">🛒 Cart <span class="cnum" id="CNUM">0</span></button>
+    </div>
+  </nav>
+
+  <!-- SHOP HEADER -->
+  <div class="sh" style="padding-bottom:10px">
+    <div class="stag">FULL COLLECTION</div>
+    <h2>EXPLORE ALL PRODUCTS 🛍️</h2>
+    <p>Find your favorite anime stickers, aesthetic posters & custom polaroids</p>
+  </div>
+
+  <!-- SEARCH & FILTERS -->
+  <div class="shop-bar">
+    <input type="text" id="SEARCH_INPUT" class="search-input" placeholder="🔍 Search stickers, posters, Jujutsu Kaisen, Luffy..." oninput="filterProducts()">
+    <select id="SORT_SELECT" class="search-input" style="max-width:180px;min-width:140px;flex:0 0 auto" onchange="filterProducts()">
+      <option value="default">Sort: Featured</option>
+      <option value="low_high">Price: Low to High</option>
+      <option value="high_low">Price: High to Low</option>
+      <option value="name_asc">Name: A to Z</option>
+    </select>
+    <div class="filter-tabs" id="FILTER_TABS">
+      <button class="ftab active" data-cat="all" onclick="setCategory('all')">All Products</button>
+      <button class="ftab" data-cat="sticker" onclick="setCategory('sticker')">🌟 Anime Stickers</button>
+      <button class="ftab" data-cat="poster" onclick="setCategory('poster')">🖼️ Posters</button>
+      <button class="ftab" data-cat="polaroid" onclick="setCategory('polaroid')">📷 Polaroids</button>
+      <button class="ftab" data-cat="offer" onclick="setCategory('offer')">🔥 Offers</button>
+    </div>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <section class="prods">
+    <div class="pgrid" id="SHOP_GRID"></div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-container">
+      <div>
+        <div class="flogo">StickyPicky</div>
+        <p class="ftag">Making your world more colourful, one sticker at a time!</p>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Quick Links</h4>
+        <div class="flinks">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop All Products</a>
+          <a href="track.html">Track Order Status</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Contact Support</h4>
+        <div class="fcon">
+          <p>📧 stickypickyindia@gmail.com</p>
+          <p>📱 WhatsApp: +91 95667 43599</p>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">© 2026 StickyPicky. All rights reserved. <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;margin-left:14px;font-weight:800;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:6px;">🔐 Admin</a></div>
+  </footer>
+
+  <!-- STICKY CART BAR -->
+  <div class="scar" id="SCAR">
+    <div>
+      <div class="scpr" id="SCPR">₹0</div>
+      <div class="scit" id="SCIT">0 items</div>
+    </div>
+    <button class="scbtn" onclick="openCartDrawer()">🛒 View Cart</button>
+  </div>
+
+  <!-- CART DRAWER MODAL -->
+  <div class="cbg" id="CBG" onclick="closeCartDrawer()"></div>
+  <div class="cpanel" id="CPANEL">
+    <div class="cphd">
+      <h3>🛒 YOUR CART</h3>
+      <button class="cpclose" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cpitems" id="CPITEMS"></div>
+    <div class="cpfoot">
+      <div class="cptot">
+        <span>Total</span>
+        <span class="cptotpr" id="CPTOT">₹0</span>
+      </div>
+      <div class="minnote" id="MINNOTE">⚠️ Add ₹<span id="MINL">199</span> more (Min ₹199)</div>
+      <a href="checkout.html" class="cobtn" style="display:block;text-align:center;text-decoration:none">💳 PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    let currentCategory = 'all';
+
+    function safeStr(s) {
+      return typeof window.escapeHTML === 'function' ? window.escapeHTML(String(s || '')) : String(s || '');
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.ftab').forEach(b => b.classList.toggle('active', b.dataset.cat === cat));
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const q = document.getElementById('SEARCH_INPUT').value.toLowerCase().trim();
+      const sortVal = document.getElementById('SORT_SELECT') ? document.getElementById('SORT_SELECT').value : 'default';
+      const grid = document.getElementById('SHOP_GRID');
+      if (!grid) return;
+
+      const allProds = (window.STORE_PRODUCTS && window.STORE_PRODUCTS.length) ? window.STORE_PRODUCTS : (window.DEFAULT_PRODUCTS || []);
+
+      let filtered = allProds.filter(p => {
+        const matchesCat = (currentCategory === 'all' || p.cat === currentCategory);
+        const matchesQuery = !q || p.nm.toLowerCase().includes(q) || p.ds.toLowerCase().includes(q);
+        return matchesCat && matchesQuery;
+      });
+
+      if (sortVal === 'low_high') {
+        filtered.sort((a, b) => a.pr - b.pr);
+      } else if (sortVal === 'high_low') {
+        filtered.sort((a, b) => b.pr - a.pr);
+      } else if (sortVal === 'name_asc') {
+        filtered.sort((a, b) => a.nm.localeCompare(b.nm));
+      }
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:48px 16px;color:#aaa"><div style="font-size:48px">🔍</div><p style="font-size:16px;font-weight:800;margin-top:12px">No products found matching your search!</p></div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => `
+        <div class="pcard">
+          <div class="pthumb" onclick="location.href='product.html?id=${safeStr(p.id)}'">
+            <img src="${safeStr(p.img)}" alt="${safeStr(p.nm)}">
+            ${p.bg ? `<span class="pbadge ${safeStr(p.bt||'')}">${safeStr(p.bg)}</span>` : ''}
+          </div>
+          <div class="pinfo">
+            <h3 onclick="location.href='product.html?id=${safeStr(p.id)}'">${safeStr(p.nm)}</h3>
+            <p>${safeStr(p.ds)}</p>
+            <div class="prow">
+              <span class="pprice">₹${p.pr}</span>
+              <button class="abtn" onclick="addToCart('${safeStr(p.id)}')">+ Add</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await initStoreData();
+      window.renderShopProducts = filterProducts;
+      const params = new URLSearchParams(window.location.search);
+      const initialCat = params.get('cat');
+      if (initialCat) {
+        setCategory(initialCat);
+      } else {
+        filterProducts();
+      }
+    });
+  </script>
+</body>
+</html>

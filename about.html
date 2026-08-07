@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us — StickyPicky</title>
+  <meta name="description" content="Learn about StickyPicky - India's favorite store for high-quality anime vinyl stickers, aesthetic room posters, and custom polaroids.">
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .about-hero {
+      background: var(--g1);
+      color: #fff;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    .about-hero h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 54px;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+      text-shadow: 3px 3px 0 rgba(0,0,0,0.3);
+    }
+    .about-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .about-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .about-text h2 {
+      font-family: 'Bangers', cursive;
+      font-size: 36px;
+      color: var(--dk);
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+    }
+    .about-text p {
+      font-size: 15px;
+      color: #555;
+      font-weight: 600;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+    .about-img {
+      border-radius: 20px;
+      border: 4px solid var(--dk);
+      box-shadow: var(--shadow-neo-lg);
+      overflow: hidden;
+      height: 280px;
+    }
+    .about-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin: 30px 0;
+    }
+    .stat-card {
+      background: var(--g2);
+      border-radius: 18px;
+      border: 3px solid var(--dk);
+      box-shadow: var(--shadow-neo);
+      padding: 24px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .stat-num {
+      font-family: 'Bangers', cursive;
+      font-size: 44px;
+      color: var(--yw);
+      text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+    }
+    .stat-lbl {
+      font-weight: 900;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT MARQUEE -->
+  <div class="abar">
+    <div class="atrk">
+      <span class="aitm">🎉 LAUNCH OFFER: 7 A5 Posters <b>@ ₹149</b></span>
+      <span class="aitm">🔥 Anime & Vinyl Stickers <b>@ ₹15</b></span>
+      <span class="aitm">📦 Min order <b>₹199</b></span>
+      <span class="aitm">✨ Custom Retro Polaroids <b>@ ₹19</b></span>
+      <span class="aitm">🚀 Fast Delivery Across India</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav>
+    <a href="index.html" class="logo">StickyPicky</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html" class="active">About Us</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+      <li><a href="track.html">Track Order</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="mobile-toggle" onclick="toggleMobileMenu()">☰ Menu</button>
+      <button class="cbtn" onclick="openCartDrawer()">🛒 Cart <span class="cnum" id="CNUM">0</span></button>
+    </div>
+  </nav>
+
+  <!-- ABOUT HERO -->
+  <div class="about-hero">
+    <h1>OUR STORY & PASSION ✨</h1>
+    <p style="font-size:18px;font-weight:800;max-width:700px;margin:0 auto">Making your world more colourful, aesthetic and expressive, one sticker at a time!</p>
+  </div>
+
+  <!-- ABOUT MAIN CONTENT -->
+  <div class="about-container">
+    
+    <!-- SECTION 1 -->
+    <div class="about-section">
+      <div class="about-text">
+        <h2>WELCOME TO STICKYPICKY 🚀</h2>
+        <p>Founded by passionate anime fans and aesthetic room decor lovers, StickyPicky was born out of a simple goal: providing high-quality, durable, waterproof vinyl stickers and posters at prices everyone can afford.</p>
+        <p>Whether you're decorating your laptop, water bottle, phone case, or transforming your bedroom wall with aesthetic posters, we craft every single print with maximum love and precision.</p>
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1572375992501-4b0892d50c69?w=800&auto=format&fit=crop&q=80" alt="StickyPicky Story">
+      </div>
+    </div>
+
+    <!-- STATS BANNERS -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">50,000+</div>
+        <div class="stat-lbl">Stickers Delivered</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">10,000+</div>
+        <div class="stat-lbl">Happy Customers</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">Waterproof Vinyl</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4.9 ★</div>
+        <div class="stat-lbl">Customer Rating</div>
+      </div>
+    </div>
+
+    <!-- SECTION 2 -->
+    <div class="about-section" style="margin-top:48px">
+      <div class="about-img">
+        <img src="images/sakura_poster_1784612794472.png" alt="Print Quality">
+      </div>
+      <div class="about-text">
+        <h2>WHY OUR QUALITY IS UNBEATABLE 🎨</h2>
+        <p>We use state-of-the-art Japanese UV ink printing technology on thick 300 GSM vinyl and poster stock. Every sticker is die-cut with laser precision, coated with a protective anti-scratch laminate layer, and tested for complete water resistance.</p>
+        <p>Best of all? Our stickers peel off easily without leaving any nasty glue residue behind on your devices!</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-container">
+      <div>
+        <div class="flogo">StickyPicky</div>
+        <p class="ftag">Making your world more colourful, one sticker at a time!</p>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Quick Links</h4>
+        <div class="flinks">
+          <a href="index.html">Home</a>
+          <a href="shop.html">Shop</a>
+          <a href="about.html">About Us</a>
+          <a href="contact.html">Contact Us</a>
+          <a href="track.html">Track Order</a>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:var(--yw);margin-bottom:12px;font-size:16px">Contact Support</h4>
+        <div class="fcon">
+          <p>📧 stickypickyindia@gmail.com</p>
+          <p>📱 WhatsApp: +91 95667 43599</p>
+        </div>
+      </div>
+    </div>
+    <div class="fbot">© 2026 StickyPicky. All rights reserved. <a href="admin.html" style="font-size:11px;color:rgba(255,255,255,0.45);text-decoration:none;margin-left:14px;font-weight:800;border:1px solid rgba(255,255,255,0.2);padding:2px 8px;border-radius:6px;">🔐 Admin</a></div>
+  </footer>
+
+  <!-- STICKY CART BAR -->
+  <div class="scar" id="SCAR">
+    <div>
+      <div class="scpr" id="SCPR">₹0</div>
+      <div class="scit" id="SCIT">0 items</div>
+    </div>
+    <button class="scbtn" onclick="openCartDrawer()">🛒 View Cart</button>
+  </div>
+
+  <!-- CART DRAWER MODAL -->
+  <div class="cbg" id="CBG" onclick="closeCartDrawer()"></div>
+  <div class="cpanel" id="CPANEL">
+    <div class="cphd">
+      <h3>🛒 YOUR CART</h3>
+      <button class="cpclose" onclick="closeCartDrawer()">✕</button>
+    </div>
+    <div class="cpitems" id="CPITEMS"></div>
+    <div class="cpfoot">
+      <div class="cptot">
+        <span>Total</span>
+        <span class="cptotpr" id="CPTOT">₹0</span>
+      </div>
+      <a href="checkout.html" class="cobtn" style="display:block;text-align:center;text-decoration:none">💳 PROCEED TO CHECKOUT</a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/supabase.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>
